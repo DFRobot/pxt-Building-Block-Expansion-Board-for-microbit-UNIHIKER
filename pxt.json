@@ -1,0 +1,32 @@
+{
+    "name": "building-block-expansion-board",
+    "version": "0.1.0",
+    "description": "MakeCode extension for the micro:bit building block expansion board (I2C 0x33): motors, servos, function pins, battery, and DHT/DS18B20 sensors.",
+    "documentation": "https://wiki.dfrobot.com/mbt0044/",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*"
+    },
+    "files": [
+        "README.md",
+        "ExpansionBoard.ts",
+        "_locales/zh-cn/building-block-expansion-board-strings.json",
+        "_locales/zh-cn/building-block-expansion-board-jsdoc-strings.json",
+        "_locales/zh-tw/building-block-expansion-board-strings.json",
+        "_locales/zh-tw/building-block-expansion-board-jsdoc-strings.json",
+        "_locales/en/building-block-expansion-board-strings.json"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "target": "8.0.16",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "tsprj"
+}

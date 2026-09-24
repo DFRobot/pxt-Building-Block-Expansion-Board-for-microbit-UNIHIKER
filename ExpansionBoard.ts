@@ -6,9 +6,9 @@
 /**
  * Building block expansion board: motors, servos, function pins, battery, and temperature/humidity sensors.
  */
-//% weight=100 color=#0fbc11 icon="" block="Building Block Expansion Board"
-//% groups='["Init","Battery","Function Pin","Servo","Motor"]'
-namespace ExpansionBoard {
+//% weight=100 color=#0fbc11 icon="" block="building block expansion board"
+//% groups='["init","battery","function pin","servo","motor"]'
+namespace expansionBoard {
     /**
      * Motor selection: M1, M2, M3, M4, or ALL.
      */
@@ -21,7 +21,7 @@ namespace ExpansionBoard {
         M3,
         //% block="M4"
         M4,
-        //% block="ALL"
+        //% block="all"
         ALL
     }
 
@@ -73,9 +73,9 @@ namespace ExpansionBoard {
         DHT22 = 2,
         //% block="DS18B20"
         DS18B20 = 3,
-        //% block="Digital OUT"
+        //% block="digital out"
         WriteGpio = 4,
-        //% block="Digital IN"
+        //% block="digital in"
         ReadGpio = 5
     }
 
@@ -93,19 +93,19 @@ namespace ExpansionBoard {
      * Sensor reading type: analog, digital in, DHT11/DHT22 temperature or humidity, or DS18B20 temperature.
      */
     export enum SensorType {
-        //% block="ADC_value"
+        //% block="ADC value"
         Analog = 0,
         //% block="digital in"
         Digital_IN = 1,
-        //% block="DHT11Temperature"
+        //% block="DHT11 temperature"
         DHT11Temperature = 2,
-        //% block="DHT11Humidity"
+        //% block="DHT11 humidity"
         DHT11Humidity = 3,
-        //% block="DHT22Temperature"
+        //% block="DHT22 temperature"
         DHT22Temperature = 4,
-        //% block="DHT22Humidity"
+        //% block="DHT22 humidity"
         DHT22Humidity = 5,
-        //% block="DS18B20Temperature"
+        //% block="DS18B20 temperature"
         DS18B20Temperature = 6
     }
 
@@ -179,7 +179,7 @@ namespace ExpansionBoard {
      */
     //% block="initialize device"
     //% weight=100
-    //% group="Init"
+    //% group="init"
     //% help=github:building-block-expansion-board/README
     export function initialize(): void {
         const DATA_ENABLE = 0x01;
@@ -196,7 +196,7 @@ namespace ExpansionBoard {
      */
     //% block="read battery percentage"
     //% weight=10
-    //% group="Battery"
+    //% group="battery"
     //% help=github:building-block-expansion-board/README
     export function readBattery(): number {
         let buf = i2cReadWithRetry(I2CADDR, 0x87, 1);
@@ -210,7 +210,7 @@ namespace ExpansionBoard {
      */
     //% block="set pin %pin mode %mode"
     //% weight=96
-    //% group="Function Pin"
+    //% group="function pin"
     //% help=github:building-block-expansion-board/README
     export function setPinMode(pin: PinNumber, mode: PinMode): void {
         let buf = pins.createBuffer(2);
@@ -227,7 +227,7 @@ namespace ExpansionBoard {
      */
     //% block="set pin %pin gpio state %value"
     //% weight=95
-    //% group="Function Pin"
+    //% group="function pin"
     //% help=github:building-block-expansion-board/README
     export function setGpioState(pin: PinNumber, value: PinState): void {
         let buf = pins.createBuffer(2);
@@ -243,7 +243,7 @@ namespace ExpansionBoard {
      */
     //% block="read pin %pin type %type"
     //% weight=87
-    //% group="Function Pin"
+    //% group="function pin"
     //% help=github:building-block-expansion-board/README
     export function readSensor(pin: PinNumber, type: SensorType): number {
         const DATA_ENABLE = 0x01;
@@ -362,8 +362,8 @@ namespace ExpansionBoard {
      * @param servo servo port S1 to S4
      * @param angle target angle, 0 to 180
      */
-    //% block="set 180 Standard Servo %index angle %angle"
-    //% group="Servo"
+    //% block="set 180 standard servo %index angle %angle"
+    //% group="servo"
     //% weight=90
     //% angle.min=0 angle.max=180
     //% help=github:building-block-expansion-board/README
@@ -382,8 +382,8 @@ namespace ExpansionBoard {
      * @param servo servo port S1 to S4
      * @param angle target angle, 0 to 360
      */
-    //% block="set 360 Positional Servo %index angle %angle"
-    //% group="Servo"
+    //% block="set 360 positional servo %index angle %angle"
+    //% group="servo"
     //% weight=90
     //% angle.min=0 angle.max=360
     //% help=github:building-block-expansion-board/README
@@ -401,9 +401,9 @@ namespace ExpansionBoard {
      * Stop a 360° continuous rotation servo.
      * @param servo servo port S1 to S4
      */
-    //% block="stop 360 Continuous Rotation Servo %servo"
+    //% block="stop 360 continuous rotation servo %servo"
     //% blockId=stopContinuousRotation
-    //% group="Servo"
+    //% group="servo"
     //% weight=85
     //% help=github:building-block-expansion-board/README
     export function stopContinuousRotation(servo: Servos): void {
@@ -422,9 +422,9 @@ namespace ExpansionBoard {
      * @param direction Forward or Backward
      * @param speed rotation speed, 0 to 100
      */
-    //% block="set 360 Continuous Rotation Servo %servo direction %direction speed %speed"
+    //% block="set 360 continuous rotation servo %servo direction %direction speed %speed"
     //% blockId=setContinuousRotation
-    //% group="Servo"
+    //% group="servo"
     //% weight=85
     //% speed.min=0 speed.max=100
     //% help=github:building-block-expansion-board/README
@@ -461,7 +461,7 @@ namespace ExpansionBoard {
     //% block="set motor %emotor direction %edir speed %speed"
     //% speed.min=0 speed.max=255
     //% weight=99
-    //% group="Motor"
+    //% group="motor"
     //% help=github:building-block-expansion-board/README
     export function controlMotor(emotor: MyEnumMotor, edir: MyEnumDir, speed: number): void {
         const MOTOR_CMDS = {
@@ -521,7 +521,7 @@ namespace ExpansionBoard {
      */
     //% block="stop motor %emotor"
     //% weight=98
-    //% group="Motor"
+    //% group="motor"
     //% help=github:building-block-expansion-board/README
     export function stopMotor(emotor: MyEnumMotor): void {
         const MOTOR_CMDS = {

@@ -1,6 +1,6 @@
 {
-    "expansionBoard|block": "building block expansion board",
-    "{id:category}expansionBoard": "building block expansion board",
+    "expansionBoard|block": "Building Blocks",
+    "{id:category}expansionBoard": "Building Blocks",
     "{id:group}init": "初始化",
     "{id:group}battery": "電池",
     "{id:group}function pin": "功能引腳",

@@ -6,7 +6,7 @@
 /**
  * Building block expansion board: motors, servos, function pins, battery, and temperature/humidity sensors.
  */
-//% weight=100 color=#0fbc11 icon="" block="building block expansion board"
+//% weight=100 color=#0fbc11 icon="\uf2db" block="Building Blocks"
 //% groups='["init","battery","function pin","servo","motor"]'
 namespace expansionBoard {
     /**
@@ -151,8 +151,9 @@ namespace expansionBoard {
         return false;
     }
 
-    // Get firmware version (used for checking communication status)
-    export function getVersion(): number {
+    // Check communication with the expansion board over I2C.
+    // Returns 0 on success, -1 on failure.
+    function getVersion(): number {
         pins.i2cWriteNumber(I2CADDR, 0xF0, NumberFormat.UInt8BE);
         basic.pause(10);
         let buf = pins.i2cReadBuffer(I2CADDR, 1);
@@ -180,7 +181,6 @@ namespace expansionBoard {
     //% block="initialize device"
     //% weight=100
     //% group="init"
-    //% help=github:building-block-expansion-board/README
     export function initialize(): void {
         const DATA_ENABLE = 0x01;
         let buf = pins.createBuffer(2);
@@ -197,7 +197,6 @@ namespace expansionBoard {
     //% block="read battery percentage"
     //% weight=10
     //% group="battery"
-    //% help=github:building-block-expansion-board/README
     export function readBattery(): number {
         let buf = i2cReadWithRetry(I2CADDR, 0x87, 1);
         return buf[0];  // Return battery level (0–255)
@@ -211,7 +210,6 @@ namespace expansionBoard {
     //% block="set pin %pin mode %mode"
     //% weight=96
     //% group="function pin"
-    //% help=github:building-block-expansion-board/README
     export function setPinMode(pin: PinNumber, mode: PinMode): void {
         let buf = pins.createBuffer(2);
         buf[0] = 0x2c + pin;
@@ -228,7 +226,6 @@ namespace expansionBoard {
     //% block="set pin %pin gpio state %value"
     //% weight=95
     //% group="function pin"
-    //% help=github:building-block-expansion-board/README
     export function setGpioState(pin: PinNumber, value: PinState): void {
         let buf = pins.createBuffer(2);
         buf[0] = 0x39 + pin;
@@ -244,7 +241,6 @@ namespace expansionBoard {
     //% block="read pin %pin type %type"
     //% weight=87
     //% group="function pin"
-    //% help=github:building-block-expansion-board/README
     export function readSensor(pin: PinNumber, type: SensorType): number {
         const DATA_ENABLE = 0x01;
         const MODE_ERROR = 0x02;
@@ -366,7 +362,6 @@ namespace expansionBoard {
     //% group="servo"
     //% weight=90
     //% angle.min=0 angle.max=180
-    //% help=github:building-block-expansion-board/README
     export function servoStandardRun(servo: Servos, angle: number): void {
         angle = Math.max(0, Math.min(180, angle)); // Clamp angle
         let period = Math.round(500 + angle * 11.1);
@@ -386,7 +381,6 @@ namespace expansionBoard {
     //% group="servo"
     //% weight=90
     //% angle.min=0 angle.max=360
-    //% help=github:building-block-expansion-board/README
     export function servoPositionalRun(servo: Servos, angle: number): void {
         angle = Math.max(0, Math.min(360, angle)); // Clamp angle
         let period = Math.round(500 + angle * 5.55);
@@ -405,7 +399,6 @@ namespace expansionBoard {
     //% blockId=stopContinuousRotation
     //% group="servo"
     //% weight=85
-    //% help=github:building-block-expansion-board/README
     export function stopContinuousRotation(servo: Servos): void {
         let period = 1500; // Default stop value
         let buf = pins.createBuffer(3);
@@ -427,7 +420,6 @@ namespace expansionBoard {
     //% group="servo"
     //% weight=85
     //% speed.min=0 speed.max=100
-    //% help=github:building-block-expansion-board/README
     export function setContinuousRotation(servo: Servos, direction: Servo360Direction, speed: number): void {
         speed = Math.max(0, Math.min(100, speed)); // Clamp speed
         let period = 1500; // Default stop value
@@ -462,7 +454,6 @@ namespace expansionBoard {
     //% speed.min=0 speed.max=255
     //% weight=99
     //% group="motor"
-    //% help=github:building-block-expansion-board/README
     export function controlMotor(emotor: MyEnumMotor, edir: MyEnumDir, speed: number): void {
         const MOTOR_CMDS = {
             [MyEnumMotor.M1]: 0x04,
@@ -522,7 +513,6 @@ namespace expansionBoard {
     //% block="stop motor %emotor"
     //% weight=98
     //% group="motor"
-    //% help=github:building-block-expansion-board/README
     export function stopMotor(emotor: MyEnumMotor): void {
         const MOTOR_CMDS = {
             [MyEnumMotor.M1]: 0x04,

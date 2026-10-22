@@ -1,6 +1,6 @@
 {
-    "expansionBoard|block": "building block expansion board",
-    "{id:category}expansionBoard": "building block expansion board",
+    "expansionBoard|block": "Building Blocks",
+    "{id:category}expansionBoard": "Building Blocks",
     "{id:group}init": "init",
     "{id:group}battery": "battery",
     "{id:group}function pin": "function pin",

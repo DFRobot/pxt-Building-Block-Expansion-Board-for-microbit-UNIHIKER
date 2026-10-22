@@ -1,4 +1,4 @@
-# Building Block Expansion Board
+# building-block-expansion-board
 
 [The Building Block Expansion Board for micro:bit / UNIHIKER provides motor, servo, function pin, battery, and temperature/humidity sensor control over I2C.](https://www.dfrobot.com/product-3021.html)
 

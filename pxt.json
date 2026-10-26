@@ -1,7 +1,7 @@
 {
     "name": "building-block-expansion-board",
     "version": "1.0.1",
-    "description": "Control motors, servos, function pins, battery monitoring, and DHT/DS18B20 sensors with the Building Block Expansion Board.",
+    "description": "Control motors, servos, GPIO, battery, and sensors.",
     "public": true,
     "documentation": "https://wiki.dfrobot.com/mbt0044/",
     "license": "MIT",

@@ -14,10 +14,10 @@ Choose motor **M1**, **M2**, **M3**, **M4**, or **all**, a direction (**forward*
 
 ```blocks
 expansionBoard.initialize()
-expansionBoard.controlMotor(expansionBoard.MyEnumMotor.M1, expansionBoard.MyEnumDir.Forward, 128)
+expansionBoard.controlMotor(expansionBoard.Motor.M1, expansionBoard.Direction.Forward, 128)
 basic.showNumber(expansionBoard.readBattery())
 basic.pause(1000)
-expansionBoard.stopMotor(expansionBoard.MyEnumMotor.M1)
+expansionBoard.stopMotor(expansionBoard.Motor.M1)
 ```
 
 ### Servos

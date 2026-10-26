@@ -1,9 +1,4 @@
 /**
- * Use this file to define custom functions and graphical blocks.
- * For more details, please visit https://makecode.microbit.org/blocks/custom
- */
-
-/**
  * Building block expansion board: motors, servos, function pins, battery, and temperature/humidity sensors.
  */
 //% weight=100 color=#0fbc11 icon="\uf2db" block="Building Blocks"
@@ -12,7 +7,7 @@ namespace expansionBoard {
     /**
      * Motor selection: M1, M2, M3, M4, or ALL.
      */
-    export enum MyEnumMotor {
+    export enum Motor {
         //% block="M1"
         M1,
         //% block="M2"
@@ -28,7 +23,7 @@ namespace expansionBoard {
     /**
      * Motor direction: Forward or Backward.
      */
-    export enum MyEnumDir {
+    export enum Direction {
         //% block="forward"
         Forward,
         //% block="backward"
@@ -454,19 +449,19 @@ namespace expansionBoard {
     //% speed.min=0 speed.max=255
     //% weight=99
     //% group="motor"
-    export function controlMotor(emotor: MyEnumMotor, edir: MyEnumDir, speed: number): void {
+    export function controlMotor(emotor: Motor, edir: Direction, speed: number): void {
         const MOTOR_CMDS = {
-            [MyEnumMotor.M1]: 0x04,
-            [MyEnumMotor.M2]: 0x08,
-            [MyEnumMotor.M3]: 0x0c,
-            [MyEnumMotor.M4]: 0x10
+            [Motor.M1]: 0x04,
+            [Motor.M2]: 0x08,
+            [Motor.M3]: 0x0c,
+            [Motor.M4]: 0x10
         };
 
         // Helper function to create motor data buffer
-        function createMotorData(cmd: number, dir: MyEnumDir, speed: number): Buffer {
+        function createMotorData(cmd: number, dir: Direction, speed: number): Buffer {
             let buf = pins.createBuffer(5);
             buf[0] = cmd;
-            if (dir == MyEnumDir.Forward) {
+            if (dir == Direction.Forward) {
                 buf[1] = 0x00;
                 buf[2] = speed;
                 buf[3] = 0x00;
@@ -480,13 +475,13 @@ namespace expansionBoard {
             return buf;
         }
 
-        if (emotor == MyEnumMotor.ALL) {
+        if (emotor == Motor.ALL) {
             // Send a full 4-motor command
             let ALLBuf = pins.createBuffer(17);
             ALLBuf[0] = 0x04;
             for (let i = 0; i < 4; i++) {
                 const offset = i * 4 + 1;
-                if (edir == MyEnumDir.Forward) {
+                if (edir == Direction.Forward) {
                     ALLBuf[offset] = 0x00;
                     ALLBuf[offset + 1] = speed;
                     ALLBuf[offset + 2] = 0x00;
@@ -513,15 +508,15 @@ namespace expansionBoard {
     //% block="stop motor %emotor"
     //% weight=98
     //% group="motor"
-    export function stopMotor(emotor: MyEnumMotor): void {
+    export function stopMotor(emotor: Motor): void {
         const MOTOR_CMDS = {
-            [MyEnumMotor.M1]: 0x04,
-            [MyEnumMotor.M2]: 0x08,
-            [MyEnumMotor.M3]: 0x0c,
-            [MyEnumMotor.M4]: 0x10
+            [Motor.M1]: 0x04,
+            [Motor.M2]: 0x08,
+            [Motor.M3]: 0x0c,
+            [Motor.M4]: 0x10
         };
 
-        if (emotor == MyEnumMotor.ALL) {
+        if (emotor == Motor.ALL) {
             // 停止所有电机
             let ALLBuf = pins.createBuffer(17);
             ALLBuf[0] = 0x04; // 与 controlMotor ALL 保持一致

@@ -126,7 +126,7 @@ basic.pause(500)
 // Expected: M1 PWM forward channel 128, reverse 0.
 // Pass: M1 spins forward at about half speed.
 // Fail: No spin, wrong direction, or other motors also start.
-expansionBoard.controlMotor(expansionBoard.MyEnumMotor.M1, expansionBoard.MyEnumDir.Forward, 128)
+expansionBoard.controlMotor(expansionBoard.Motor.M1, expansionBoard.Direction.Forward, 128)
 basic.pause(800)
 
 // TEST: stopMotor (single)
@@ -134,7 +134,7 @@ basic.pause(800)
 // Expected: M1 PWM all zeros; M2–M4 unchanged by this call.
 // Pass: M1 stops; other motors (if previously off) stay off.
 // Fail: M1 keeps running, or all motors stop unexpectedly.
-expansionBoard.stopMotor(expansionBoard.MyEnumMotor.M1)
+expansionBoard.stopMotor(expansionBoard.Motor.M1)
 basic.pause(400)
 
 // TEST: controlMotor (ALL)
@@ -142,7 +142,7 @@ basic.pause(400)
 // Expected: Four-motor frame starting at cmd 0x04, reverse speed 128 each.
 // Pass: M1–M4 all spin backward.
 // Fail: Only one motor moves, or direction is forward.
-expansionBoard.controlMotor(expansionBoard.MyEnumMotor.ALL, expansionBoard.MyEnumDir.Backward, 128)
+expansionBoard.controlMotor(expansionBoard.Motor.ALL, expansionBoard.Direction.Backward, 128)
 basic.pause(800)
 
 // TEST: stopMotor (ALL)
@@ -150,7 +150,7 @@ basic.pause(800)
 // Expected: Four-motor zero PWM frame.
 // Pass: M1–M4 all stop.
 // Fail: Any motor keeps running.
-expansionBoard.stopMotor(expansionBoard.MyEnumMotor.ALL)
+expansionBoard.stopMotor(expansionBoard.Motor.ALL)
 basic.pause(200)
 
 serial.writeLine("TEST END")

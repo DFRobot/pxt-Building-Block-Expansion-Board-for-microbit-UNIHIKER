@@ -1,6 +1,6 @@
 {
     "name": "building-block-expansion-board",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "description": "Control motors, servos, GPIO, battery, and sensors.",
     "public": true,
     "documentation": "https://wiki.dfrobot.com/mbt0044/",
